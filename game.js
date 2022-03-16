@@ -10,6 +10,7 @@ const apikey = {
     },
 };
 
+const id = urlParams.get("id");
 const text = urlParams.get("text");
 const optionText = urlParams.get("optionText");
 const options = urlParams.get("options");
@@ -28,7 +29,7 @@ fetch(urlClues, apikey)
 fetch(urlOptions, apikey)
     .then((res) => res.json())
     .then((data) => {
-        console.log(data)
+        console.log(data);
     });
 
 
@@ -57,25 +58,25 @@ function showClue(id) {
     }
 
     /* adding the current options */
-    options.forEach(option => {
-        if (showOption(option)) {
+    options.forEach(optionText => {
+        if (showOption(optionText)) {
             const button = document.createElement("button")
-            button.innerText = option.optionText
+            button.innerText = options.optionText
             button.classList.add("btn")
-            button.addEventListener("click", () => selectOption(option))
+            button.addEventListener("click", () => selectOption(optionText))
             optionButtonsElement.appendChild(button)
         }
     })
 }
 
 /* this is going to show our current options*/
-function showOption(option) {
-    return requiredState == null || option.requiredState(state)
+function showOption(optionText) {
+    return requiredState == null || optionText.requiredState(state)
 }
 
 /* this is going to happen every time we select an option */
-function selectOption(option) {
-    state = Object.assign(state, option.setState)
+function selectOption(optionText) {
+    state = Object.assign(state, optionText.setState)
     showClue(nextText)
 }
 
