@@ -1,0 +1,61 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family:'Courier New', Courier, monospace;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+p {
+    color: rgb(230, 229, 228);
+}
+
+.notes {
+    width: 800px;
+    max-width: 80%;
+    color: rgb(230, 229, 228);
+}
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: rgb(230, 229, 228);
+    border: solid black 0.075rem;
+    border-radius: 0.25rem;
+    padding: 5rem;
+}
+
+.btn-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    margin-top: 2.5rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border: solid black 0.075rem;
+    border-radius: 0.25rem;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: black;
+    color:rgb(230, 229, 228);
+}
+
+.section {
+    margin-top: 1rem;
+}
