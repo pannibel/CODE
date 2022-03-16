@@ -2,7 +2,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 const text = urlParams.get("text");
-const options = urlParams.get("option");
+const optionText = urlParams.get("optionText");
+const options = urlParams.get("options");
 const nextText = urlParams.get("nextText");
 const setState = urlParams.get("setState");
 const requiredState = urlParams.get("requiredState");
@@ -19,14 +20,16 @@ fetch(urlClues)
     handleDatabase(data);
   });
 
-function handleDatabase(data) {
-  console.log(data);
-  data.forEach(showTextNode);
-}
 
 fetch(urlOptions)
-    .then((res) => res.json())
-    .then((data) => data.forEach(showOption(option)));
+  .then((res) => res.json())
+  .then((data) => data.forEach(showOption(option)));
+
+  
+function handleDatabase(data) {
+  console.log(data);
+  data.forEach(showClue);
+}
 
 
 /* selecting the text element in the html*/
@@ -39,14 +42,14 @@ let state = {}
 /* this is going to start the game */
 function startGame() {
     state = {};
-    showTextNode(32);
+    showClue(32);
 }
 
 /* this is going to display whichever option we're on
 it's going to take a particular index of a text node --> with textNodeIndex */
-function showTextNode(textNodeIndex) {
-    const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
-    textElement.innerText = textNode.text;
+function showClue(showClueIndex) {
+    id = showClueIndex;
+    textElement.innerText = text;
 
     /* this is removing the options */
     while (optionButtonsElement.firstChild) {
@@ -54,29 +57,30 @@ function showTextNode(textNodeIndex) {
     }
 
     /* adding the current options */
-    textNode.options.forEach(option => {
+    options.forEach(option => {
         if (showOption(option)) {
             const button = document.createElement("button")
-            button.innerText = option.text
+            button.innerText = optionText
             button.classList.add("btn")
-            button.addEventListener("click", () => selectOption(option))
+            button.addEventListener("click", () => selectOption())
             optionButtonsElement.appendChild(button)
         }
     })
 }
 
 /* this is going to show our current options*/
-function showOption(option) {
-    return option.requiredState == null || option.requiredState(state)
+function showOption() {
+    return requiredState == null || requiredState(state)
 }
 
 /* this is going to happen every time we select an option */
-function selectOption(option) {
-    const nextTextNodeId = option.nextText;
-    state = Object.assign(state, option.setState)
+function selectOption() {
+    const nextTextNodeId = nextText;
+    state = Object.assign(state, setState)
     showTextNode(nextTextNodeId)
 }
 
+/*
 const textNodes = [
     {
         id: 1,
