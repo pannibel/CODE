@@ -1,6 +1,6 @@
 /* fetching the database */
 const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get("id");
+let id = urlParams.get("id");
 const text = urlParams.get("text");
 const optionText = urlParams.get("optionText");
 const options = urlParams.get("options");
@@ -8,28 +8,24 @@ const nextText = urlParams.get("nextText");
 const setState = urlParams.get("setState");
 const requiredState = urlParams.get("requiredState");
 
-const urlClues = "https://murdermystery-a1e7.restdb.io/rest/clues";
-const urlOptions = "https://murdermystery-a1e7.restdb.io/rest/options";
+const urlClues = "https://murdermystery-a1e7.restdb.io/rest/clues" + id;
+const urlOptions = "https://murdermystery-a1e7.restdb.io/rest/options" + id;
+
+const apikey = {
+    headers: {
+        "x-apikey": "6231ffc1dced170e8c83a2ea",
+    },
+};
 
 // fetch the data
-fetch(urlClues)
-  .then(function (res) {
-    return res.json();
-  })
-  .then(function (data) {
-    handleDatabase(data);
-  });
+fetch(urlClues, apikey)
+    .then((res) => res.json())
+    .then((data) => showClue(data));
 
 
-fetch(urlOptions)
+fetch(urlOptions, apikey)
   .then((res) => res.json())
-  .then((data) => data.forEach(showOption(option)));
-
-  
-function handleDatabase(data) {
-  console.log(data);
-  data.forEach(showClue);
-}
+  .then((data) => data.forEach(showClue(data)));
 
 
 /* selecting the text element in the html*/
@@ -75,9 +71,8 @@ function showOption() {
 
 /* this is going to happen every time we select an option */
 function selectOption() {
-    const nextTextNodeId = nextText;
     state = Object.assign(state, setState)
-    showTextNode(nextTextNodeId)
+    showClue(nextText)
 }
 
 /*
