@@ -20,12 +20,16 @@ const requiredState = urlParams.get("requiredState");
 // fetch the data
 fetch(urlClues, apikey)
     .then((res) => res.json())
-    .then((data) => showClue(data));
+    .then((data) => {
+        console.log(data)
+    });
 
 
 fetch(urlOptions, apikey)
-  .then((res) => res.json())
-  .then((data) => showClue(data));
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data)
+    });
 
 
 /* selecting the text element in the html*/
@@ -44,7 +48,7 @@ function startGame() {
 /* this is going to display whichever option we're on
 it's going to take a particular index from the database */
 function showClue(id) {
-    const id = urlParams.get("id");
+    id = urlParams.get("id");
     textElement.innerText = text;
 
     /* this is removing the options */
@@ -53,25 +57,25 @@ function showClue(id) {
     }
 
     /* adding the current options */
-    options.forEach(options => {
-        if (showOption(options)) {
+    options.forEach(option => {
+        if (showOption(option)) {
             const button = document.createElement("button")
-            button.innerText = options.optionText
+            button.innerText = option.optionText
             button.classList.add("btn")
-            button.addEventListener("click", () => selectOption(options))
+            button.addEventListener("click", () => selectOption(option))
             optionButtonsElement.appendChild(button)
         }
     })
 }
 
 /* this is going to show our current options*/
-function showOption(options) {
-    return requiredState == null || options.requiredState(state)
+function showOption(option) {
+    return requiredState == null || option.requiredState(state)
 }
 
 /* this is going to happen every time we select an option */
-function selectOption(options) {
-    state = Object.assign(state, options.setState)
+function selectOption(option) {
+    state = Object.assign(state, option.setState)
     showClue(nextText)
 }
 
