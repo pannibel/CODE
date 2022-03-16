@@ -1,3 +1,34 @@
+/* fetching the database */
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
+const text = urlParams.get("text");
+const options = urlParams.get("option");
+const nextText = urlParams.get("nextText");
+const setState = urlParams.get("setState");
+const requiredState = urlParams.get("requiredState");
+
+const urlClues = "https://murdermystery-a1e7.restdb.io/rest/clues";
+const urlOptions = "https://murdermystery-a1e7.restdb.io/rest/options";
+
+// fetch the data
+fetch(urlClues)
+  .then(function (res) {
+    return res.json();
+  })
+  .then(function (data) {
+    handleDatabase(data);
+  });
+
+function handleDatabase(data) {
+  console.log(data);
+  data.forEach(showTextNode);
+}
+
+fetch(urlOptions)
+    .then((res) => res.json())
+    .then((data) => data.forEach(showOption(option)));
+
+
 /* selecting the text element in the html*/
 const textElement = document.getElementById("text");
 /* selecting the option buttons container */
