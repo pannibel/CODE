@@ -12,7 +12,7 @@ function startGame() {
 }
 
 /* this is going to display whichever option we're on
-it's going to take a particular index of a text node --> with textNodeIndex */
+it's going to take a particular index of a text node --> with clueIndex */
 function showClue(clueIndex) {
     const clue = clues.find(clue => clue.id === clueIndex)
     textElement.innerText = clue.text;
