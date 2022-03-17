@@ -8,14 +8,14 @@ let state = {}
 /* this is going to start the game */
 function startGame() {
     state = {};
-    showTextNode(32);
+    showClue(32);
 }
 
 /* this is going to display whichever option we're on
 it's going to take a particular index of a text node --> with textNodeIndex */
-function showTextNode(textNodeIndex) {
-    const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
-    textElement.innerText = textNode.text;
+function showClue(clueIndex) {
+    const clue = clues.find(clue => clue.id === clueIndex)
+    textElement.innerText = clue.text;
 
     /* this is removing the options */
     while (optionButtonsElement.firstChild) {
@@ -23,7 +23,7 @@ function showTextNode(textNodeIndex) {
     }
 
     /* adding the current options */
-    textNode.options.forEach(option => {
+    clues.options.forEach(option => {
         if (showOption(option)) {
             const button = document.createElement("button")
             button.innerText = option.text
@@ -41,12 +41,12 @@ function showOption(option) {
 
 /* this is going to happen every time we select an option */
 function selectOption(option) {
-    const nextTextNodeId = option.nextText;
+    const nextClueId = option.nextText;
     state = Object.assign(state, option.setState)
-    showTextNode(nextTextNodeId)
+    showClue(nextClueId)
 }
 
-const textNodes = [
+const clues = [
     {
         id: 1,
         text: 'YOU FIND YOURSELF IN THE HALL. FROM HERE YOU CAN START LOOKING AROUND IN ONE OF TWO ROOMS. WHICH ONE DO YOU CHOOSE?',
