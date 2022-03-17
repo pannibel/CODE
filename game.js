@@ -23,7 +23,7 @@ function showClue(clueIndex) {
     }
 
     /* adding the current options */
-    clues.options.forEach(option => {
+    clue.options.forEach(option => {
         if (showOption(option)) {
             const button = document.createElement("button")
             button.innerText = option.text
