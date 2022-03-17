@@ -495,10 +495,10 @@ const clues = [
     },
     {
         id: 32,
-        text: 'START INVESTIGATING',
+        text: 'There was a murder at a huge mansion and all six of its residents are key suspects. You need to find out who the murderer is, what weapon they used and in which room it took place. When you have all the evidence, you need to go to the place of the murder in order to win. If you dont have enough evidence, you can always keep looking, but be careful because the killer has their eyes on you!',
         options: [
             {
-                text: 'GO TO THE HALL',
+                text: 'START INVESTIGATING',
                 nextText: 1,
             },
         ]

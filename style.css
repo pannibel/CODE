@@ -59,3 +59,52 @@ p {
 .section {
     margin-top: 1rem;
 }
+
+
+@media only screen and (max-width: 450px) {
+
+    body {
+        padding: 0;
+        margin: 0;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 120vh;
+    }
+
+    .notes {
+        max-width: 80%;
+        color: rgb(230, 229, 228);
+    }
+
+    .container {
+        width: 800px;
+        max-width: 80%;
+        background-color: rgb(230, 229, 228);
+        border: solid black 0.075rem;
+        border-radius: 0.25rem;
+        padding: 2rem;
+    }
+
+    .btn {
+        padding: 1rem 2rem;
+        background-color: black;
+        color:rgb(230, 229, 228);
+        border-radius: 0.25rem;
+        box-shadow: none;
+        cursor: pointer;
+    }
+    
+    .btn-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 2.5rem;
+    }
+}
