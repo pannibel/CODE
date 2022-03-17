@@ -70,6 +70,7 @@ function showOption(option) {
 
 /* this is going to happen every time we select an option */
 function selectOption(option) {
+    const nextTextNodeId = option.nextText;
     state = Object.assign(state, option.setState)
     showClue(nextText)
 }
