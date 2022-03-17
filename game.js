@@ -42,9 +42,9 @@ function startGame() {
 
 /* this is going to display whichever option we're on
 it's going to take a particular index from the database */
-function showClue(id) {
-    id = urlParams.get("id");
-    textElement.innerText = text;
+function showClue(clueIndex) {
+    const clue = urlClues.find(clue => clue.id === clueIndex)
+    textElement.innerText = clue.text;
 
     /* this is removing the options */
     while (optionButtonsElement.firstChild) {
@@ -52,7 +52,7 @@ function showClue(id) {
     }
 
     /* adding the current options */
-    options.forEach(option => {
+    clue.forEach(option => {
         if (showOption(option)) {
             const button = document.createElement("button")
             button.innerText = option.optionText
