@@ -20,13 +20,12 @@ const requiredState = urlParams.get("requiredState");
 
 // fetch the data
 fetch(urlClues, apikey)
-    .then((res) => res.json());
-
+    .then((res) => res.json())
+    .then((data) => showClue(data));
 
 fetch(urlOptions, apikey)
     .then((res) => res.json())
-;
-
+    .then((data) => showOption(data));
 
 /* selecting the text element in the html*/
 const textElement = document.getElementById("text");
