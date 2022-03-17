@@ -55,7 +55,7 @@ function showClue(id) {
     options.forEach(option => {
         if (showOption(option)) {
             const button = document.createElement("button")
-            button.innerText = optionText
+            button.innerText = option.optionText
             button.classList.add("btn")
             button.addEventListener("click", () => selectOption(option))
             optionButtonsElement.appendChild(button)
@@ -65,7 +65,7 @@ function showClue(id) {
 
 /* this is going to show our current options*/
 function showOption(option) {
-    return requiredState == null || option.requiredState(state)
+    return option.requiredState == null || option.requiredState(state)
 }
 
 /* this is going to happen every time we select an option */
